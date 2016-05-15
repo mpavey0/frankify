@@ -1,0 +1,52 @@
+<html>
+	<head></head>
+	<body>
+		<h1>stampr</h1>
+		<form>
+			<label>USA Forever(47&cent;)</label><input name="47c" value="2" type="text">
+			<label>Global Forever(115&cent;)</label><input name="115c" value="4" type="text">
+			<label>Target Amount</label><input name="target" value="3.20" type="text">
+			<input type="submit" value="Submit">
+		</form>
+		<div id="answer"></div>
+
+		<script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+		<script type="text/javascript">
+			$(function() {
+
+				// anything that needs to happen when DOM is loaded goes here
+
+				
+			});
+
+			$("form").submit(function() {
+				var USAStamps = $("form input[name='47c']").val();
+				var GlobalStamps = $("form input[name='115c']").val();
+				var target = $("form input[name='target']").val();
+
+				var bestUSAStamps;
+				var bestGlobalStamps;
+				var bestValue = 0;
+
+				for (var USATrial = 0; USATrial <= USAStamps; USATrial++) {
+					for (var GlobalTrial = 0; GlobalTrial <= GlobalStamps; GlobalTrial++) {
+						calculatedValue = (USATrial * .47) + (GlobalTrial * 1.15);
+						
+						if (calculatedValue >= target && (calculatedValue - target) < Math.abs(bestValue - target)) {
+							bestValue = calculatedValue;
+							bestUSAStamps = USATrial;
+							bestGlobalStamps = GlobalTrial;
+
+						}
+					}
+				}
+				$("#answer").text('The best you can do is use ' + bestUSAStamps + ' USA stamps and ' + bestGlobalStamps + ' Global stamps for a total of $' + bestValue.toFixed(2) + '.');
+				return false;
+
+
+			});
+
+
+		</script>
+	</body>
+</html>
