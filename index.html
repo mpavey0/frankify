@@ -10,20 +10,31 @@
 	</head>
 	<body>
 		<h1>stampr</h1>
-		<form>
-			<div>
-				<label for="47c">USA Forever(47&cent;)</label><input id="47c" name="47c" value="2" type="number">
-			</div>
-			<div>
-				<label for="115c">Global Forever(115&cent;)</label><input id="115c" name="115c" value="4" type="number">
-			</div>
-			<div>
-				<label for="target">Target Amount</label><input id="target" name="target" value="3.20" type="number">
-			</div>
-			<div>
-				<input type="submit" value="Calculate">
-			</div>
-		</form>
+		
+			<form>
+				<div>
+					<select name="stampvalue">
+						<option value="47" selected>47&cent;</option>
+						<option value="115">115&cent;</option>
+					</select>
+					<input id="cent-47" name="cent-47" value="2" type="number">
+				</div>
+				<div>
+					<select name="stampvalue">
+						<option value="47">47&cent;</option>
+						<option value="115" selected>115&cent;</option>
+					</select>
+					<input id="cent-115" name="cent-115" value="4" type="number">
+				</div>
+				<div>
+					<label for="target">Target Amount ($)</label>
+					<input id="target" name="target" value="3.20" type="number">
+				</div>
+				<div>
+					<input type="submit" value="Calculate">
+				</div>
+			</form>
+		
 		<div id="answer"></div>
 
 		<script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
@@ -39,9 +50,13 @@
 				
 			});
 
-			$("form").submit(function() {
-				var USAStamps = $("form input[name='47c']").val();
-				var GlobalStamps = $("form input[name='115c']").val();
+			
+			$("form").submit(newCalculate);
+
+
+			function oldCalculate() {
+				var USAStamps = $("form input[name='cent-47']").val();
+				var GlobalStamps = $("form input[name='cent-115']").val();
 				var target = $("form input[name='target']").val();
 
 				var bestUSAStamps;
@@ -60,11 +75,87 @@
 						}
 					}
 				}
-				$("#answer").text('The best you can do is use ' + bestUSAStamps + ' USA stamps and ' + bestGlobalStamps + ' Global stamps for a total of $' + bestValue.toFixed(2) + '.');
+				
+				var answer = 'The best you can do is use ' + bestUSAStamps + ' USA stamps and ' + bestGlobalStamps + ' Global stamps for a total of $' + bestValue.toFixed(2) + '.';
+				displayAnswer(answer);
+
+
 				return false;
 
 
-			});
+			}
+
+			function newCalculate() {
+
+				var stampsAvailable = [];
+				var stampValues = [];
+
+				var inputs = $("input[id|='cent']");
+				inputs.each(function(index){
+					stampsAvailable.push(parseInt($(this).val()));
+					stampValues.push(parseInt($(this).prev("select").val()));
+				});
+
+				var target = parseFloat($("form input[name='target']").val())*100;
+
+				var bestValue = 0;
+				var calculatedValue = 0;
+				var bestStamps = [];
+
+				iterate(0, [], 0);
+				
+				var answer = 'The best you can do is use ';
+				for (var i = 0; i < stampsAvailable.length; i++) {
+					answer += bestStamps[i] + ' ' + stampValues[i] + '¢ stamps';
+					if (i < (stampsAvailable.length-1)) {
+						answer += ", ";
+					}
+					else {
+						answer += ".";
+					}
+				} 
+				answer += "Your total will be $" + (bestValue/100).toFixed(2) + '.';
+				displayAnswer(answer);
+
+
+				return false;
+
+				function iterate(stampNumber, prevStampQuantities, runningTotal = 0) {
+					console.log("About to run the loop for stamp number " + stampNumber + " (" + stampValues[stampNumber] + ").");
+
+					for (var i = 0; i <= stampsAvailable[stampNumber]; i++) {
+						if (stampNumber == (stampsAvailable.length -1)) { // We are on the final stamp type
+							console.log("Looks like there are no more stamp types. stampNumber is " + stampNumber);
+							calculatedValue = runningTotal + (i * stampValues[stampNumber]);
+							if (calculatedValue >= target && (calculatedValue - target) < Math.abs(bestValue - target)) {
+								bestValue = calculatedValue;
+								bestStamps = prevStampQuantities.slice();
+								bestStamps.push(i);
+							}
+						}
+						else {
+							var intermediateValue = runningTotal + (i * stampValues[stampNumber]);
+							console.log(prevStampQuantities);			
+
+							prevStampQuantities.pop();
+							prevStampQuantities.push(i);
+							console.log("About to call iterate function, using prevStampQuantities of " + prevStampQuantities);
+
+							iterate(stampNumber + 1, prevStampQuantities, intermediateValue);
+						}
+					}
+				}
+
+			}
+
+			
+
+
+			function displayAnswer(answer) {
+				$("#answer").text(answer);
+			}
+
+// $("input[id|='cent']")
 
 
 		</script>
