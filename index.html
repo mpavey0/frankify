@@ -27,8 +27,15 @@
 					<input id="cent-115" name="cent-115" value="4" type="number">
 				</div>
 				<div>
+					<select name="stampvalue">
+						<option value="47">47&cent;</option>
+						<option value="70" selected>70&cent;</option>
+					</select>
+					<input id="cent-70" name="cent-70" value="3" type="number">
+				</div>
+				<div>
 					<label for="target">Target Amount ($)</label>
-					<input id="target" name="target" value="3.20" type="number">
+					<input id="target" name="target" value="3.20" type="number" step=".01">
 				</div>
 				<div>
 					<input type="submit" value="Calculate">
@@ -137,7 +144,8 @@
 							var intermediateValue = runningTotal + (i * stampValues[stampNumber]);
 							console.log(prevStampQuantities);			
 
-							prevStampQuantities.pop();
+							while (prevStampQuantities.length > stampNumber)
+								prevStampQuantities.pop();
 							prevStampQuantities.push(i);
 							console.log("About to call iterate function, using prevStampQuantities of " + prevStampQuantities);
 
