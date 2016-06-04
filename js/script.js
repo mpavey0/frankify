@@ -1,7 +1,9 @@
 $(function() {
 
 	// anything that needs to happen when DOM is loaded goes here
-
+	$('select').select2({
+		tags: true
+	});
 	
 });
 
@@ -9,36 +11,7 @@ $(function() {
 $("form").submit(newCalculate);
 
 
-function oldCalculate() {
-	var USAStamps = $("form input[name='cent-47']").val();
-	var GlobalStamps = $("form input[name='cent-115']").val();
-	var target = $("form input[name='target']").val();
 
-	var bestUSAStamps;
-	var bestGlobalStamps;
-	var bestValue = 0;
-
-	for (var USATrial = 0; USATrial <= USAStamps; USATrial++) {
-		for (var GlobalTrial = 0; GlobalTrial <= GlobalStamps; GlobalTrial++) {
-			calculatedValue = (USATrial * .47) + (GlobalTrial * 1.15);
-			
-			if (calculatedValue >= target && (calculatedValue - target) < Math.abs(bestValue - target)) {
-				bestValue = calculatedValue;
-				bestUSAStamps = USATrial;
-				bestGlobalStamps = GlobalTrial;
-
-			}
-		}
-	}
-	
-	var answer = 'The best you can do is use ' + bestUSAStamps + ' USA stamps and ' + bestGlobalStamps + ' Global stamps for a total of $' + bestValue.toFixed(2) + '.';
-	displayAnswer(answer);
-
-
-	return false;
-
-
-}
 
 function newCalculate() {
 
@@ -48,7 +21,7 @@ function newCalculate() {
 	var inputs = $("input[id|='cent']");
 	inputs.each(function(index){
 		stampsAvailable.push(parseInt($(this).val()));
-		stampValues.push(parseInt($(this).prev("select").val()));
+		stampValues.push(parseInt($(this).parent().prev().find("select").val()));
 	});
 
 	var target = parseFloat($("form input[name='target']").val())*100;
