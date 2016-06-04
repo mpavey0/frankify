@@ -4,38 +4,41 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 		<link rel="stylesheet" href="css/style.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 	<body>
 		<h1>stampr</h1>
 		
 			<form>
-				<div>
-					<select name="stampvalue">
-						<option value="47" selected>47&cent;</option>
-						<option value="115">115&cent;</option>
-					</select>
-					<input id="cent-47" name="cent-47" value="2" type="number">
-				</div>
-				<div>
-					<select name="stampvalue">
-						<option value="47">47&cent;</option>
-						<option value="115" selected>115&cent;</option>
-					</select>
-					<input id="cent-115" name="cent-115" value="4" type="number">
-				</div>
-				<div>
-					<select name="stampvalue">
-						<option value="47">47&cent;</option>
-						<option value="70" selected>70&cent;</option>
-					</select>
-					<input id="cent-70" name="cent-70" value="3" type="number">
-				</div>
-				<div>
-					<label for="target">Target Amount ($)</label>
-					<input id="target" name="target" value="3.20" type="number" step=".01">
-				</div>
-				<div>
-					<input type="submit" value="Calculate">
+				<div class="container-fluid">
+					<div class="row">
+							<label for="target" class="col-md-2">Postage required ($)</label>
+							<input id="target" name="target" value="3.20" type="number" step=".01" class="col-md-1">
+					</div>
+					<div class="row">
+						<select name="stampvalue" class="col-md-2">
+							<option value="47" selected>47&cent;</option>
+							<option value="115">115&cent;</option>
+						</select>
+						<input id="cent-47" name="cent-47" value="2" type="number" class="col-md-1">
+					</div>
+					<div class="row">
+						<select name="stampvalue" class="col-md-2">
+							<option value="47">47&cent;</option>
+							<option value="115" selected>115&cent;</option>
+						</select>
+						<input id="cent-115" name="cent-115" value="4" type="number" class="col-md-1">
+					</div>
+					<div class="row">
+						<select name="stampvalue" class="col-md-2">
+							<option value="47">47&cent;</option>
+							<option value="70" selected>70&cent;</option>
+						</select>
+						<input id="cent-70" name="cent-70" value="3" type="number" class="col-md-1">
+					</div>
+					<div class="row">
+						<input type="submit" value="Calculate" class="col-md-3">
+					</div>
 				</div>
 			</form>
 		
