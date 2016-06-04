@@ -32,17 +32,22 @@ function newCalculate() {
 
 	iterate(0, [], 0);
 	
-	var answer = 'The best you can do is use ';
-	for (var i = 0; i < stampsAvailable.length; i++) {
-		answer += bestStamps[i] + ' ' + stampValues[i] + '¢ stamps';
-		if (i < (stampsAvailable.length-1)) {
-			answer += ", ";
-		}
-		else {
-			answer += ".";
-		}
-	} 
-	answer += "Your total will be $" + (bestValue/100).toFixed(2) + '.';
+	if (bestValue) {
+		var answer = 'The best you can do is use ';
+		for (var i = 0; i < stampsAvailable.length; i++) {
+			answer += bestStamps[i] + ' ' + stampValues[i] + '¢ stamps';
+			if (i < (stampsAvailable.length-1)) {
+				answer += ", ";
+			}
+			else {
+				answer += ".";
+			}
+		} 
+		answer += "Your total will be $" + (bestValue/100).toFixed(2) + '.';	
+	} else {
+		var answer = "Sorry, you don't have enough stamps!"
+	}
+	
 	displayAnswer(answer);
 
 
