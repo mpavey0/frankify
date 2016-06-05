@@ -1,16 +1,32 @@
+var select2Prefs = {
+		tags: true
+	};
+
+var stampType = '<div class="row stamp">\
+						<div class="col-md-2">\
+							<select name="stampValue-1">\
+								<option value="47" selected>47&cent;</option>\
+								<option value="115">115&cent;</option>\
+							</select>\
+						</div>\
+						<div class="col-md-1">\
+							<input id="cent-47" name="cent-47" value="2" type="number">\
+						</div>\
+					</div>';
+
 $(function() {
 
 	// anything that needs to happen when DOM is loaded goes here
-	$('select').select2({
-		tags: true
-	});
+	$('div.target').after(stampType);
+
+	$('select').select2(select2Prefs);
 	
 });
 
 
 $("form").submit(newCalculate);
 
-
+$("#addStampType").click(addStampType);
 
 
 function newCalculate() {
@@ -82,11 +98,21 @@ function newCalculate() {
 
 }
 
+function addStampType() {
+	// Clone the final stamp type
+	var finalStampType = $("div.stamp:last");
+	
+	finalStampType.after(stampType);
+	//TODO: increment name of select
 
+	// Initialize Select2 on the newly cloned stamp type
+	$("div.stamp:last").find("select").select2(select2Prefs);
+}
 
 
 function displayAnswer(answer) {
-	$("#answer").text(answer);
+	$("#answer").hide();
+	$("#answer").text(answer).fadeIn();
 }
 
 // $("input[id|='cent']")
