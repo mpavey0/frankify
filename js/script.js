@@ -12,7 +12,7 @@ var stampType = '<div class="row stamp">\
 							</select>\
 						</div>\
 						<div class="col-md-1">\
-							<input id="cent-47" name="cent-47" value="2" type="number">\
+							<input id="cent-47" name="cent-47" value="10" type="number">\
 						</div>\
 					</div>';
 
@@ -118,6 +118,14 @@ function displayAnswer(answer) {
 }
 
 function template(inputString) {
-	return inputString.text + '¢';
+	var friendlyName = '';
+	switch(parseInt(inputString.text)) {
+		case 47:
+			friendlyName = ' (USA Forever)';
+			break;
+		case 115:
+			friendlyName = ' (Global Forever)';
+	}
+	return inputString.text + '¢' + friendlyName;
 }
 
