@@ -1,12 +1,14 @@
 var select2Prefs = {
-		tags: true
+		tags: true,
+		templateSelection: template,
+		templateResult: template
 	};
 
 var stampType = '<div class="row stamp">\
 						<div class="col-md-2">\
 							<select name="stampValue-1">\
-								<option value="47" selected>47&cent;</option>\
-								<option value="115">115&cent;</option>\
+								<option value="47">47</option>\
+								<option value="115">115</option>\
 							</select>\
 						</div>\
 						<div class="col-md-1">\
@@ -115,5 +117,7 @@ function displayAnswer(answer) {
 	$("#answer").text(answer).fadeIn();
 }
 
-// $("input[id|='cent']")
+function template(inputString) {
+	return inputString.text + '¢';
+}
 
