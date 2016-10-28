@@ -13,3 +13,15 @@ div.row {
 div.row.target {
 	margin-bottom: 2em;
 }
+
+.nav-item {
+	list-style: none;
+	padding: 10px 20px;
+
+}
+
+nav ul {
+	display: flex;
+	position: fixed;
+	margin-bottom: 300px;
+}
