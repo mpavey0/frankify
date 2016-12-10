@@ -4,14 +4,14 @@ var select2Prefs = {
 		templateResult: template
 	};
 
-var stampType = '<div class="row stamp">\
-						<div class="col-md-2">\
+var stampType = '<div class="grid__row stamp">\
+						<div>\
 							<select name="stampValue-1">\
 								<option value="47">47</option>\
 								<option value="115">115</option>\
 							</select>\
 						</div>\
-						<div class="col-md-1">\
+						<div>\
 							<input id="cent-47" name="cent-47" value="10" type="number">\
 						</div>\
 					</div>';

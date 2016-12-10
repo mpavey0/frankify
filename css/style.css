@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
+body, input, button {
+	font-family: 'Oswald', sans-serif;
+}
+
 body {
 	margin-left: 10px;
 }
@@ -6,11 +12,12 @@ span.select2 {
 	width: 75% !important;
 }
 
-div.row {
+.grid__row {
 	margin: 10px 0px;
+	display: flex;
 }
 
-div.row.target {
+.grid__row.target {
 	margin-bottom: 2em;
 }
 
@@ -22,6 +29,11 @@ div.row.target {
 
 nav ul {
 	display: flex;
-	position: fixed;
-	margin-bottom: 300px;
+	margin-bottom: 1em;
+}
+
+button {
+	font-size: 1.5em;
+	border-radius: 3px;
+	background-color: #8d539e;
 }
