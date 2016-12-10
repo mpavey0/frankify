@@ -9,16 +9,31 @@ body {
 }
 
 span.select2 {
-	width: 75% !important;
+	width: 250px !important;
 }
 
 .grid__row {
 	margin: 10px 0px;
 	display: flex;
+	flex-wrap: wrap;
+}
+
+.label {
+	flex-basis: 250px;
+	margin-right: 10px;
+}
+
+.input {
+	/*text-align: right;*/
+	flex: 1;
 }
 
 .grid__row.target {
 	margin-bottom: 2em;
+}
+
+.grid__column {
+	/*flex: 100%;*/
 }
 
 .nav-item {
@@ -36,4 +51,15 @@ button {
 	font-size: 1.5em;
 	border-radius: 3px;
 	background-color: #8d539e;
+}
+
+input {
+	font-size: 1em;
+	width: 3em;
+	text-align: center;
+}
+
+.container-fluid {
+	max-width: 500px;
+	margin: auto;
 }

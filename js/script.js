@@ -5,13 +5,13 @@ var select2Prefs = {
 	};
 
 var stampType = '<div class="grid__row stamp">\
-						<div>\
+						<div class="grid__column label">\
 							<select name="stampValue-1">\
 								<option value="47">47</option>\
 								<option value="115">115</option>\
 							</select>\
 						</div>\
-						<div>\
+						<div class="grid__column input">\
 							<input id="cent-47" name="cent-47" value="10" type="number">\
 						</div>\
 					</div>';
