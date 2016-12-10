@@ -43,10 +43,10 @@ span.select2 {
 
 }
 
-nav ul {
+/*nav ul {
 	display: flex;
 	margin-bottom: 1em;
-}
+}*/
 
 button {
 	font-size: 1.5em;
@@ -65,4 +65,8 @@ input {
 .container-fluid {
 	max-width: 500px;
 	margin: auto;
+}
+
+ul {
+	padding: 0;
 }
