@@ -22,14 +22,26 @@ $(function() {
 	$('#addStampType').parents('.grid__row').before(stampType);
 
 	$('select').select2(select2Prefs);
+
+	$('#target').focus();
 	
 });
 
 
-$("form").submit(newCalculate);
+$("form").submit(checkInput);
 
 $("#addStampType").click(addStampType);
 
+
+function checkInput() {
+	if ($("form input[name='target']").val() != '') {
+		newCalculate();
+	} else {
+		displayAnswer('Please enter the required postage.')
+		$('#target').focus();
+	}
+	return false;
+}
 
 function newCalculate() {
 
