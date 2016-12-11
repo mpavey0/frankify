@@ -19,7 +19,7 @@ var stampType = '<div class="grid__row stamp">\
 $(function() {
 
 	// anything that needs to happen when DOM is loaded goes here
-	$('div.target').after(stampType);
+	$('#addStampType').parents('.grid__row').before(stampType);
 
 	$('select').select2(select2Prefs);
 	
